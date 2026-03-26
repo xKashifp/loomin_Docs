@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+httpx
+python-multipart
+pydantic
+aiosqlite
+numpy
+faiss-cpu
+PyMuPDF
+pypdf
+tenacity
+ypy-websocket
+y-py
+

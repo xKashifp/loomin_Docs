@@ -1,0 +1,14 @@
+flowchart LR
+  Editor[Editor: React+TypeScript]
+  Sidebar[AI Sidebar: selection actions]
+  Backend[FastAPI Backend (RAG+SQLite+Tracing)]
+  Ollama[Local Inference Engine: Ollama]
+  FAISS[FAISS Vector Index]
+  SQLite[(SQLite DB)]
+
+  Editor -->|"HTTP: /api/files, /api/assistant/*"| Backend
+  Backend -->|"HTTP: /api/embed, /api/generate"| Ollama
+  Backend -->|"Read/Write vectors + chunk metadata"| FAISS
+  Backend -->|"Persist versions + chat history"| SQLite
+  Backend -->|"Return grounded citations + JSON tracing metadata"| Editor
+

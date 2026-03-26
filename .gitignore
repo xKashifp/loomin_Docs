@@ -1,0 +1,41 @@
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Python / backend
+backend/__pycache__/
+backend/**/*.pyc
+backend/.venv/
+backend/venv/
+.venv/
+*.pyc
+
+# Local data / sqlite / indexes (generated at runtime)
+*.sqlite
+*.db
+*.index
+*faiss*
+backend_data/
+data/
+
+# Env / secrets
+.env
+.env.*
+
+# Logs / OS
+*.log
+.DS_Store
+Thumbs.db
+
+# Docker runtime noise
+**/.dockerignore
+
+# IMPORTANT: huge offline bootstrap artifacts (do NOT commit)
+deploy/docker-images/
+deploy/rpms/
+deploy/*.tar
+deploy/*.tar.gz
+*.tar
+*.tar.gz
+
