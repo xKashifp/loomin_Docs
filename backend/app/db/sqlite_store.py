@@ -135,13 +135,6 @@ class SQLiteStore:
                 """,
                 (file_id, file_name, mime_type, int(time.time() * 1000), text_content),
             )
-            await db.execute(
-                """
-                DELETE FROM chunks
-                WHERE file_id = ?;
-                """,
-                (file_id,),
-            )
             await db.commit()
 
     async def insert_chunks(
