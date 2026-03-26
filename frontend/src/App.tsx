@@ -2,11 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./styles.css";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import Collaboration from "@tiptap/extension-collaboration";
-import CollaborationCursor from "@tiptap/extension-collaboration-cursor";
 import { Markdown } from "@tiptap/markdown";
-import * as Y from "yjs";
-import { WebsocketProvider } from "y-websocket";
 
 type ModelProfile = {
   id: string;
@@ -53,26 +49,11 @@ export default function App() {
     "# Loomin-Docs\n\nOpen two tabs to see collaboration.\n\nSelect text and click Summarize / Improve.",
   );
 
-  const ydoc = useMemo(() => new Y.Doc(), [docId]);
-  const provider = useMemo(() => {
-    const host = window.location.hostname;
-    const wsUrl = `ws://${host}:8000/ws/collab`;
-    return new WebsocketProvider(wsUrl, docId, ydoc);
-  }, [docId, ydoc]);
-
   const editor = useEditor({
     extensions: [
       StarterKit,
       Markdown.configure({
         markedOptions: { gfm: true, breaks: false },
-      }),
-      Collaboration.configure({ document: ydoc }),
-      CollaborationCursor.configure({
-        provider,
-        user: {
-          name: `User-${Math.floor(Math.random() * 1000)}`,
-          color: "#2b6cb0",
-        },
       }),
     ],
     content: initialMarkdown,
